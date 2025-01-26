@@ -1,8 +1,11 @@
 import styles from "./Contact.module.css";
 import { FaUserAlt } from "react-icons/fa";
 import { FaPhoneFlip } from "react-icons/fa6";
-const Contact = ({data, deleteContact}) => {
-  
+import { useDispatch } from "react-redux";
+import { deleteContact } from "../../redux/contactsSlice";
+
+const Contact = ({ data }) => {
+  const dispatch = useDispatch();
   return (
     <div className={styles.contact}>
       <ul className={styles.contactList}>
@@ -17,7 +20,12 @@ const Contact = ({data, deleteContact}) => {
           </p>
         </li>
       </ul>
-      <button onClick={()=> deleteContact(data.id)} className={styles.deleteButton}>Delete</button>
+      <button
+        onClick={() => dispatch(deleteContact(data.id))}
+        className={styles.deleteButton}
+      >
+        Delete
+      </button>
     </div>
   );
 };
